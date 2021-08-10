@@ -265,6 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 703e3163566b2bc42bea48b0239b9923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  quiltInit: {fileID: 397724878}
 --- !u!1 &397724875
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,6 +276,8 @@ GameObject:
   m_Component:
   - component: {fileID: 397724877}
   - component: {fileID: 397724876}
+  - component: {fileID: 397724880}
+  - component: {fileID: 397724879}
   - component: {fileID: 397724878}
   m_Layer: 0
   m_Name: AR Session Origin
@@ -346,7 +349,35 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 77262b1060e4a194bba74d857d3a8e99, type: 3}
   - {fileID: 8300000, guid: 8fb29d5a137f39540b0d43964795b582, type: 3}
   - {fileID: 8300000, guid: 785f5700c77b70d4881d9e02bab4244d, type: 3}
+  placed: 0
   quilt: {fileID: 485744778}
+--- !u!114 &397724879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397724875}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa17d122634046b4a8e23048891fafc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RaycastPrefab: {fileID: 6882305329485377428, guid: 0d5980f2391e62547921f8a7d286a1c2, type: 3}
+--- !u!114 &397724880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397724875}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlanePrefab: {fileID: 6882305329485377428, guid: 0d5980f2391e62547921f8a7d286a1c2, type: 3}
+  m_DetectionMode: -1
 --- !u!1 &485744778
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,8 +387,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 485744779}
+  - component: {fileID: 485744780}
   m_Layer: 0
-  m_Name: Placeholder Quilt
+  m_Name: Quilt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -377,6 +409,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &485744780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485744778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c9b8a5d52b5264a8d3b834d7cb2206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quiltInit: {fileID: 397724878}
+  finScale: {x: 0.1, y: 0.005, z: 0.1}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

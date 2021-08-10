@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.ARFoundation;
 
 public class QuiltInit : MonoBehaviour
 {
@@ -14,24 +15,28 @@ public class QuiltInit : MonoBehaviour
     public GameObject quiltPrefabs;
     public Material[] faces;
     public AudioClip[] sounds;
-    private Vector3 pos =  Vector3.zero;
+    public bool placed;
+
+    private Vector3 pos;
+    
 
     public GameObject quilt;
 
     // Start is called before the first frame update
     void Start()
     {
-        placeSquares();
+        placed = false;
+        Invoke("placeSquares()",5);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+      
     }
 
     // Initial placement of all quilt squares
-    void placeSquares()
+    private void placeSquares()
     {
         int squareCount = 0;
         int quiltDim = (int)Mathf.Sqrt(faces.Length);
@@ -41,8 +46,8 @@ public class QuiltInit : MonoBehaviour
             {
                 GameObject hold = Instantiate(quiltPrefabs, pos, quilt.transform.rotation, quilt.transform);
                 
-                AudioSource soundSource = hold.GetComponent<AudioSource>();
-                soundSource.clip = sounds[squareCount];
+                AudioSource soundSource = hold.AddComponent<AudioSource>();
+                soundSource.clip  = sounds[squareCount];
                 MeshRenderer texture = hold.GetComponent<MeshRenderer>();
                 texture.material = faces[squareCount];
 
@@ -52,6 +57,26 @@ public class QuiltInit : MonoBehaviour
             pos.z += .15f;
             pos.x = 0f;
         }
+        placed = true;
+    }
 
+    private void placeSquaresSpiral()
+    {
+        int squareCount = 0;
+        for (int i = 0; i<faces.Length; i++)
+        {
+            pos.x += Mathf.Sin((Mathf.PI / 2)*(Mathf.Sqrt(4 * (i + 1) - 3)));
+            pos.z += Mathf.Cos((Mathf.PI / 2)*(Mathf.Sqrt(4 * (i + 1) - 3)));
+
+            GameObject hold = Instantiate(quiltPrefabs, pos, quilt.transform.rotation, quilt.transform);
+
+            AudioSource soundSource = hold.AddComponent<AudioSource>();
+            soundSource.clip = sounds[squareCount];
+            MeshRenderer texture = hold.GetComponent<MeshRenderer>();
+            texture.material = faces[squareCount];
+
+            squareCount++;
+        }
+        placed = true;
     }
 }
